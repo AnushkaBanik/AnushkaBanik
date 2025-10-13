@@ -63,15 +63,18 @@ const anushka = {
 ## 📈 Contribution Activity
 
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=AnushkaBanik&theme=github-light&hide_border=false&area=true" alt="Contribution Graph"/>
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=AnushkaBanik&theme=default&hide_border=false&area=true" alt="Contribution Graph"/>
 </p>
 
 ---
 
 ## 🚀 Featured Projects
 
-### 📁 Project Showcase
-> Currently building production-ready projects to showcase here. Check back soon!
+### 🌤️ Weather_JS
+> A web application built using **HTML, CSS, and JavaScript** to display real-time weather data by integrating an external Weather API.
+>
+> - **Tech Stack:** HTML, CSS, JavaScript, API Integration
+> - **[⭐ GitHub Repo Link]** *[Replace with the actual link]*
 
 **Focus Areas:**
 - 💻 Full-Stack MERN Applications
