@@ -34,17 +34,16 @@ const anushka = {
 ## 🛠️ Tech Stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=js,python,java,c,html,css" alt="Languages"/>
+  <img src="https://skillicons.dev/icons?i=js,python,java,c,html,css" alt="Languages"/>
 </p>
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=react,tailwind,nodejs,express,mongodb,firebase" alt="Technologies"/>
+  <img src="https://skillicons.dev/icons?i=react,tailwind,nodejs,express,mongodb,firebase" alt="Technologies"/>
 </p>
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=git,github,vscode,npm" alt="Tools"/>
+  <img src="https://skillicons.dev/icons?i=git,github,vscode,npm" alt="Tools"/>
 </p>
-
 ---
 
 ## 📊 GitHub Statistics
@@ -84,14 +83,16 @@ const anushka = {
 ## 🤝 Let's Connect
 
 <p align="center">
-  <a href="mailto:anushkabanik80@gmail.com">
-    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/>
+  <a href="mailto:anushkabanik80@gmail.com" target="_blank">
+    <img src="https://img.shields.io/badge/Gmail-D14836?style=flat-square&logo=gmail&logoColor=white" alt="Gmail">
   </a>
-  <a href="https://www.linkedin.com/in/anushka-banik-9423a32a8/">
-    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
+  &nbsp;
+  <a href="https://www.linkedin.com/in/anushka-banik-9423a32a8/" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn">
   </a>
-  <a href="https://github.com/AnushkaBanik">
-    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/>
+  &nbsp;
+  <a href="https://github.com/AnushkaBanik" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-1A1A1A?style=flat-square&logo=github&logoColor=white" alt="GitHub">
   </a>
 </p>
 
