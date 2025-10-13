@@ -33,25 +33,16 @@ const anushka = {
 
 ## 🛠️ Tech Stack
 
-## 🛠️ Tech Stack
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=js,python,java,c,html,css" alt="Languages"/>
+</p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black" alt="JavaScript"/>
-  <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" alt="Python"/>
-  <img src="https://img.shields.io/badge/Java-007396?style=flat&logo=java&logoColor=white" alt="Java"/>
-  <img src="https://img.shields.io/badge/C-A8B9CC?style=flat&logo=c&logoColor=black" alt="C"/>
-  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white" alt="HTML5"/>
-  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white" alt="CSS3"/>
-  <br><br> <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=black" alt="React"/>
-  <img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white" alt="TailwindCSS"/>
-  <img src="https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white" alt="Node.js"/>
-  <img src="https://img.shields.io/badge/Express.js-000000?style=flat&logo=express&logoColor=white" alt="Express.js"/>
-  <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb&logoColor=white" alt="MongoDB"/>
-  <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=firebase&logoColor=black" alt="Firebase"/>
-  <br><br> <img src="https://img.shields.io/badge/Git-F05033?style=flat&logo=git&logoColor=white" alt="Git"/>
-  <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white" alt="GitHub"/>
-  <img src="https://img.shields.io/badge/VS%20Code-007ACC?style=flat&logo=visual-studio-code&logoColor=white" alt="VS Code"/>
-  <img src="https://img.shields.io/badge/NPM-CB0000?style=flat&logo=npm&logoColor=white" alt="NPM"/>
+  <img src="https://skillicons.dev/icons?i=react,tailwind,nodejs,express,mongodb,firebase" alt="Technologies"/>
+</p>
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=git,github,vscode,npm" alt="Tools"/>
 </p>
 
 ---
@@ -72,7 +63,7 @@ const anushka = {
 ## 📈 Contribution Activity
 
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=AnushkaBanik&theme=default&hide_border=false&area=true" alt="Contribution Graph"/>
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=AnushkaBanik&theme=github-light&hide_border=false&area=true" alt="Contribution Graph"/>
 </p>
 
 ---
