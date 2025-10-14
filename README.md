@@ -1,61 +1,93 @@
-# Hi there, I'm Anushka Banik 👋
-
-<p align="center">
-  <em>B.Tech Computer Science student passionate about building performant and scalable full-stack applications</em>
-</p>
-
 <div align="center">
-  
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=28&pause=1000&color=4078c0&center=true&vCenter=true&width=600&lines=Full+Stack+Developer;B.Tech+in+Computer+Science;Open+Source+Enthusiast;Building+Scalable+Web+Apps)](https://git.io/typing-svg)
+
+# Hi, <img src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" width="30px" height="30px"> I'm Anushka Banik
 
 </div>
 
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=AnushkaBanik&label=Profile%20Views&color=4078c0&style=flat" alt="profile views" />
-  <img src="https://img.shields.io/github/followers/AnushkaBanik?label=Followers&style=social" alt="followers" />
+  <a href="https://git.io/typing-svg">
+    <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=500&size=20&pause=1000&color=2D9EF7&center=true&vCenter=true&width=900&lines=Hello!+I'm+Anushka,+a+B.Tech+Computer+Science+Engineering+student;Passionate+about+building+innovative+tech+solutions;Continuously+exploring+new+technologies" alt="Typing SVG" />
+  </a>
 </p>
 
 ---
 
 ## 👨‍💻 About Me
+🚀 Hello! I'm Anushka, a B.Tech Computer Science Engineering student passionate about building innovative tech solutions and continuously exploring new technologies..💻 📚
 
-```javascript
-const anushka = {
-    location: "Kolkata, India",
-    education: "B.Tech in Computer Science & Engineering",
-    status: "Actively seeking internship & full-time opportunities",
-    interests: ["Full Stack Development", "Open Source", "Problem Solving"],
-    contact: "anushkabanik80@gmail.com"
-};
-```
+- 🔬 Currently diving deep into **Full-Stack Web Development (MERN Stack)**
+- 🏃 I'm interested in Web Dev, DSA, and passionate about the current technologies!!
+- 🤝 Looking to collaborate on **Web development projects**, **Open Source contributions**, and **Actively seeking internship & full-time opportunities**
+- 📧 You can contact me at [anushkabanik80@gmail.com](mailto:anushkabanik80@gmail.com)
+- 🔗 My Linkedin Profile: [LinkedIn](https://www.linkedin.com/in/anushka-banik-9423a32a8/)
 
 ---
 
-## 🛠️ Tech Stack
+## 💻 Tech Stack:
 
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=js,python,java,c,html,css" alt="Languages"/>
+### Languages
+<p align="left">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" width="50" height="50"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" width="50" height="50"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" width="50" height="50"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" width="50" height="50"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" width="50" height="50"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" width="50" height="50"/>
 </p>
 
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=react,tailwind,nodejs,express,mongodb,firebase" alt="Technologies"/>
+### Frameworks/Libraries
+<p align="left">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" width="50" height="50"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" width="50" height="50"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original-wordmark.svg" alt="Node.js" width="50" height="50"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" width="50" height="50"/>
 </p>
 
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=git,github,vscode,npm" alt="Tools"/>
+### Databases
+<p align="left">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" width="50" height="50"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB Atlas" width="50" height="50"/>
+  <img src="https://res.cloudinary.com/cloudinary-marketing/image/upload/w_552,h_552/v1599098500/creative_source/Logo/Cloud%20Glyph/cloudinary_cloud_glyph_blue_png.png" alt="Cloudinary" width="50" height="50"/>
+</p>
+
+### Tools
+<p align="left">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" width="50" height="50"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="50" height="50"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" width="50" height="50"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" alt="Vite" width="50" height="50"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" alt="Postman" width="50" height="50"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" alt="npm" width="50" height="50"/>
 </p>
 
 ---
 
-## 📊 GitHub Statistics
+## 🌐 Connect with Me
+
+<p align="left">
+  <a href="https://www.linkedin.com/in/anushka-banik-9423a32a8/" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
+  </a>
+  <a href="https://github.com/AnushkaBanik" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/>
+  </a>
+  <a href="mailto:anushkabanik80@gmail.com">
+    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/>
+  </a>
+</p>
+
+---
+
+## 📊 GitHub Analysis
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=AnushkaBanik&show_icons=true&theme=default&hide_border=false&count_private=true" alt="GitHub Stats" height="165"/>
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=AnushkaBanik&theme=default&hide_border=false" alt="GitHub Streak" height="165"/>
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=AnushkaBanik&theme=default&hide_border=true" alt="GitHub Streak" height="180"/>
 </p>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=AnushkaBanik&layout=compact&theme=default&hide_border=false" alt="Top Languages"/>
+  <img src="https://github-readme-stats.vercel.app/api?username=AnushkaBanik&show_icons=true&theme=default&hide_border=true&count_private=true" alt="GitHub Stats" height="180"/>
+
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=AnushkaBanik&layout=compact&theme=default&hide_border=true&langs_count=8" alt="Most Used Languages"/>
 </p>
 
 ---
@@ -63,53 +95,28 @@ const anushka = {
 ## 📈 Contribution Activity
 
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=AnushkaBanik&theme=default&hide_border=false&area=true" alt="Contribution Graph"/>
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=AnushkaBanik&theme=github-compact&hide_border=true&area=true" alt="Contribution Graph" width="100%"/>
 </p>
 
----
-
-## 🚀 Featured Projects
-
-### 🌤️ Weather_JS
-> A web application built using **HTML, CSS, and JavaScript** to display real-time weather data by integrating an external Weather API.
->
-> - **Tech Stack:** HTML, CSS, JavaScript, API Integration
-> - **[⭐ GitHub Repo Link]** *[Replace with the actual link]*
-
-**Focus Areas:**
-- 💻 Full-Stack MERN Applications
-- 🎨 Responsive UI/UX Design
-- 🔐 Authentication & Authorization Systems
-- 📱 RESTful API Development
-
----
-
-## 🤝 Let's Connect
-
 <p align="center">
-  <a href="mailto:anushkabanik80@gmail.com">
-    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/>
-  </a>
-  <a href="https://www.linkedin.com/in/anushka-banik-9423a32a8/">
-    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
-  </a>
-  <a href="https://github.com/AnushkaBanik">
-    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/>
-  </a>
+  <img src="https://komarev.com/ghpvc/?username=AnushkaBanik&label=Profile%20Views&color=0e75b6&style=flat" alt="profile views" />
+  <img src="https://img.shields.io/github/followers/AnushkaBanik?label=Followers&style=social" alt="followers" />
 </p>
 
 ---
 
 <div align="center">
 
-### 💼 Open to Internship & Full-Time Opportunities
+<a href="https://git.io/typing-svg">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=500&size=20&pause=1000&color=2D9EF7&center=true&vCenter=true&width=800&lines=Let's+connect+and+craft+something+extraordinary+together!;Thanks+for+visiting!+%E2%AD%90" alt="Typing SVG" />
+</a>
 
-**Looking for roles in:** Full Stack Development | Frontend Development | Backend Development
+**Star ⭐ this repo if you found it interesting!**
 
 </div>
 
 ---
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=4078c0&height=100&section=footer" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=100&section=footer" width="100%"/>
 </p>
