@@ -19,7 +19,9 @@
 - 🏃 I'm interested in Web Dev, DSA, and passionate about the current technologies!!
 - 🤝 Looking to collaborate on **Web development projects**, **Open Source contributions**, and **Actively seeking internship & full-time opportunities**
 - 📧 You can contact me at [anushkabanik80@gmail.com](mailto:anushkabanik80@gmail.com)
-- 🔗 My Linkedin Profile: [LinkedIn](https://www.linkedin.com/in/anushka-banik-9423a32a8/)
+- 🔗 My Linkedin Profile: [anushka-banik-9423a32a8(LinkedIn)](https://www.linkedin.com/in/anushka-banik-9423a32a8/)
+- 📫 Reach me: **[anushka.banik.33(Instagram)](https://www.instagram.com/anushka.banik.33/)**  
+- 🧰 Fun Fact: I turn ☕ into code!
 
 ---
 
@@ -74,19 +76,32 @@
   <a href="mailto:anushkabanik80@gmail.com">
     <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/>
   </a>
+  <a href="https://instagram.com/anushka.banik.33"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" /></a>
 </p>
 
 ---
 
 ## 📊 GitHub Analysis
 
+<table style="width: 100%; margin-bottom: 20px; border: 1px solid #555">
+      <tr>
+        <td style="text-align: center; padding: 10px">
+          <a href="https://git.io/streak-stats">
+            <img
+              src="https://streak-stats.demolab.com/?user=AnushkaBanik&theme=transparent&hide_border=true&card_width=1000&ring=39D353&fire=39D353&currStreakNum=39D353&sideNums=39D353&currStreakLabel=AFAFAF&sideLabels=AFAFAF&dates=39D353"
+              alt="GitHub Streak"
+              style="border-radius: 5px"
+            />
+          </a>
+        </td>
+      </tr>
+    </table>
 <p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=AnushkaBanik&theme=default&hide_border=true" alt="GitHub Streak" height="180"/>
-</p>
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=AnushkaBanik&show_icons=true&theme=default&hide_border=true&count_private=true" alt="GitHub Stats" height="180"/>
-
+  <img
+              height="215px"
+              alt="GitHub Stats"
+              src="https://github-readme-stats.vercel.app/api?username=AnushkaBanik&count_private=true&show_icons=true&include_all_commits=true&line_height=21&hide_border=true&theme=default"
+            />
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=AnushkaBanik&layout=compact&theme=default&hide_border=true&langs_count=8" alt="Most Used Languages"/>
 </p>
 
