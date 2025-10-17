@@ -84,26 +84,31 @@
 ## 📊 GitHub Analysis
 
 <table style="width: 100%; margin-bottom: 20px; border: 1px solid #555">
-      <tr>
-        <td style="text-align: center; padding: 10px">
-          <a href="https://git.io/streak-stats">
-            <img
-              src="https://streak-stats.demolab.com/?user=AnushkaBanik&theme=transparent&hide_border=true&card_width=1000&ring=39D353&fire=39D353&currStreakNum=39D353&sideNums=39D353&currStreakLabel=AFAFAF&sideLabels=AFAFAF&dates=39D353"
-              alt="GitHub Streak"
-              style="border-radius: 5px"
-            />
-          </a>
-        </td>
-      </tr>
-    </table>
+  <tr>
+    <td style="text-align: center; padding: 10px">
+      <a href="https://git.io/streak-stats">
+        <img
+          src="https://streak-stats.demolab.com/?user=AnushkaBanik&theme=transparent&hide_border=true&card_width=1000"
+          alt="GitHub Streak"
+          style="border-radius: 5px"
+        />
+      </a>
+    </td>
+  </tr>
+</table>
+
 <p align="center">
   <img
-              height="215px"
-              alt="GitHub Stats"
-              src="https://github-readme-stats.vercel.app/api?username=AnushkaBanik&count_private=true&show_icons=true&include_all_commits=true&line_height=21&hide_border=true&theme=default"
-            />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=AnushkaBanik&layout=compact&theme=default&hide_border=true&langs_count=8" alt="Most Used Languages"/>
+    height="215px"
+    alt="GitHub Stats"
+    src="https://github-readme-stats.vercel.app/api?username=AnushkaBanik&show_icons=true&count_private=true&hide_border=true&theme=default"
+  />
+  <img
+    src="https://github-readme-stats.vercel.app/api/top-langs/?username=AnushkaBanik&layout=compact&theme=default&hide_border=true&langs_count=8"
+    alt="Most Used Languages"
+  />
 </p>
+
 
 ---
 
