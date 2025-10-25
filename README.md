@@ -64,9 +64,9 @@
   <a href="https://github.com/AnushkaBanik" target="_blank">
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" height="40" />
   </a>
-  <a href="mailto:anushkabanik80@gmail.com" target="_blank">
-    <img src="https://img.icons8.com/color/48/000000/gmail-new.png" alt="Email" height="40" />
-  </a>
+<a href="mailto:anushkabanik80@gmail.com">
+  <img src="https://img.icons8.com/color/48/000000/gmail-new.png" alt="Email" height="40" />
+</a>
   <a href="https://instagram.com/anushka.banik.33" target="_blank">
     <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" height="40" />
   </a>
