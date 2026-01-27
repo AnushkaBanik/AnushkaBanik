@@ -15,9 +15,9 @@
 ## 👨‍💻 About Me
 🚀 Hello! I'm Anushka, a B.Tech Computer Science Engineering student passionate about building innovative tech solutions and continuously exploring new technologies.💻 📚
 
-- 🔬 I’m currently learning *Mern Stack Development*
-- 🏃 I'm interested in Web Dev, DSA, and passionate about the current technologies!!
-- 🤝 Looking to collaborate on *Web development projects*, *Open Source contributions*, and *Actively seeking internship & full-time opportunities*
+- 🔬 I’m currently pursuing B.Tech in Computer Science Engineering.
+- 🌱 I’m currently learning *Mern Stack Development*
+- 🤝 Looking to collaborate on *Web development projects* and *Actively seeking internship & full-time opportunities*
 - 📧 You can contact me at [anushkabanik80@gmail.com](mailto:anushkabanik80@gmail.com)
 - 🔗 My Linkedin Profile: [anushka-banik-9423a32a8(LinkedIn)](https://www.linkedin.com/in/anushka-banik-9423a32a8/)
 - 📫 Reach me: *[anushka.banik.33(Instagram)](https://www.instagram.com/anushka.banik.33/)* 
