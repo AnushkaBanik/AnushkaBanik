@@ -61,8 +61,6 @@
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" width="50"/>
   <img src="https://avatars.githubusercontent.com/u/164544218?s=200&v=4" width="50"/>
 </p>
-
-
 ---
 
 ## 🌐 Connect with Me
@@ -81,52 +79,34 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" height="40" />
   </a>
 </p>
-
-
 ---
 
 ## 📊 GitHub Analysis
 
-<table align="center">
-  <tr>
-    <td align="center">
-      <a href="https://git.io/streak-stats">
-        <img
-          src="https://streak-stats.demolab.com/?user=AnushkaBanik&theme=transparent&hide_border=true"
-          alt="GitHub Streak"
-        />
-      </a>
-    </td>
-  </tr>
-</table>
-
 <p align="center">
-  <img
-    height="200"
-    src="https://github-readme-stats.vercel.app/api?username=AnushkaBanik&show_icons=true&count_private=true&hide_border=true&theme=transparent"
-  />
-  <img
-    height="200"
-    src="https://github-readme-stats.vercel.app/api/top-langs/?username=AnushkaBanik&layout=compact&theme=transparent&hide_border=true&langs_count=8"
-  />
+  <img src="https://streak-stats.demolab.com?user=AnushkaBanik&theme=tokyonight&hide_border=true" />
 </p>
+<p align="center">
+<img height="180em" src="https://github-readme-stats-sigma-five.vercel.app/api?username=AnushkaBanik&show_icons=true&theme=tokyonight&hide_border=true" />
 
+<img height="180em" src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=AnushkaBanik&layout=compact&theme=tokyonight&hide_border=true" />
 
+</p>
 ---
 
 ## 📈 Contribution Activity
 
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=AnushkaBanik&bg_color=000&color=E0F2FE&line=0e75b6&point=1e90ff&area=true&hide_border=true" alt="Contribution Graph" width="100%"/>
+  <img 
+    src="https://github-readme-activity-graph.vercel.app/graph?username=AnushkaBanik&theme=tokyo-night&hide_border=true&area=true" 
+    width="100%"
+  />
 </p>
-
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=AnushkaBanik&label=Profile%20Views&color=0e75b6&style=flat" alt="profile views" />
-  <img src="https://img.shields.io/github/followers/AnushkaBanik?label=Followers&style=social" alt="followers" />
+  <img src="https://komarev.com/ghpvc/?username=AnushkaBanik&label=Profile%20Views&color=0e75b6&style=flat" />
+  <img src="https://img.shields.io/github/followers/AnushkaBanik?label=Followers&style=social" />
 </p>
-
 ---
-
 <div align="center">
 
 <a href="https://git.io/typing-svg">
@@ -134,11 +114,8 @@
 </a>
 
 **Star ⭐ this repo if you found it interesting!**
-
 </div>
-
 ---
-
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=100&section=footer" width="100%"/>
 </p>
