@@ -317,28 +317,6 @@
     0
   </text>
 
-  <text
-    x="570"
-    y="309"
-    text-anchor="middle"
-    fill="#8b949e"
-    font-family="Arial, sans-serif"
-    font-size="10"
-    font-weight="600">
-    FORKED REPOSITORIES
-  </text>
-
-  <text
-    x="570"
-    y="338"
-    text-anchor="middle"
-    fill="#f0f6fc"
-    font-family="Arial, sans-serif"
-    font-size="21"
-    font-weight="700">
-    0
-  </text>
-
   <line
     x1="36"
     y1="360"
