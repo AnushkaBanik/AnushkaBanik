@@ -369,7 +369,7 @@ jobs:
              * ============================================================
              */
 
-            const starsReceived =
+            const stars =
               publicRepositories.reduce(
                 (total, repo) =>
                   total +
@@ -879,8 +879,7 @@ jobs:
                 ${stars}
               </text>
 
-
-              <text
+               <text
                 x="570"
                 y="309"
                 text-anchor="middle"
@@ -888,7 +887,7 @@ jobs:
                 font-family="Arial, sans-serif"
                 font-size="10"
                 font-weight="600">
-                FORKS
+                FORKES RECEIVED
               </text>
 
               <text
@@ -899,7 +898,29 @@ jobs:
                 font-family="Arial, sans-serif"
                 font-size="21"
                 font-weight="700">
-                ${forks}
+                ${forksReceived}
+              </text>
+
+              <text
+                x="570"
+                y="309"
+                text-anchor="middle"
+                fill="#8b949e"
+                font-family="Arial, sans-serif"
+                font-size="10"
+                font-weight="600">
+                FORKED REPOSITORIES
+              </text>
+
+              <text
+                x="570"
+                y="338"
+                text-anchor="middle"
+                fill="#f0f6fc"
+                font-family="Arial, sans-serif"
+                font-size="21"
+                font-weight="700">
+                ${forkedRepositories}
               </text>
 
               <line
@@ -1037,6 +1058,7 @@ jobs:
               issues,
               repositoryCount,
               stars,
-              forks,
+              forksReceived,
+              forkedRepositories,
               languages
             });
