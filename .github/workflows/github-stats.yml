@@ -105,6 +105,8 @@ jobs:
             const totalContributions =
               calendar.totalContributions;
 
+            console.log("TOTAL FROM GITHUB:", calendar.totalContributions);
+
             const commitContributions =
               contributions.totalCommitContributions;
 
@@ -376,11 +378,6 @@ jobs:
                   (repo.stargazers_count || 0),
                 0
               );
-
-            const forkedRepositories =
-            publicRepositories.filter(
-               repo => repo.fork === true
-             ).length;
 
             const forksReceived =
               publicRepositories.reduce(
