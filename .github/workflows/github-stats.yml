@@ -369,7 +369,7 @@ jobs:
              * ============================================================
              */
 
-            const stars =
+            const starsReceived =
               publicRepositories.reduce(
                 (total, repo) =>
                   total +
@@ -377,7 +377,12 @@ jobs:
                 0
               );
 
-            const forks =
+            const forkedRepositories =
+            publicRepositories.filter(
+               repo => repo.fork === true
+             ).length;
+
+            const forksReceived =
               publicRepositories.reduce(
                 (total, repo) =>
                   total +
