@@ -19,14 +19,25 @@ jobs:
           script: |
             const username = "AnushkaBanik";
 
-            const query = `
-              query($login: String!) {
-                user(login: $login) {
-                  followers {
-                    totalCount
-                  }
+            /*
+             * ============================================================
+             * 1. CONTRIBUTION DATA — LAST 12 MONTHS
+             * ============================================================
+             */
 
-                  contributionsCollection {
+            const contributionQuery = `
+              query(
+                $login: String!
+                $from: DateTime!
+                $to: DateTime!
+              ) {
+                user(login: $login) {
+                  createdAt
+
+                  contributionsCollection(
+                    from: $from
+                    to: $to
+                  ) {
                     totalCommitContributions
                     totalIssueContributions
                     totalPullRequestContributions
@@ -34,6 +45,7 @@ jobs:
 
                     contributionCalendar {
                       totalContributions
+
                       weeks {
                         contributionDays {
                           date
@@ -42,51 +54,52 @@ jobs:
                       }
                     }
                   }
-
-                  repositories(
-                    first: 100
-                    ownerAffiliations: OWNER
-                    privacy: PUBLIC
-                    isFork: false
-                  ) {
-                    totalCount
-
-                    nodes {
-                      name
-                      stargazerCount
-                      forkCount
-
-                      languages(
-                        first: 10
-                        orderBy: {field: SIZE, direction: DESC}
-                      ) {
-                        edges {
-                          size
-                          node {
-                            name
-                          }
-                        }
-                      }
-                    }
-                  }
                 }
               }
             `;
 
-            const result = await github.graphql(query, {
-              login: username
-            });
+            const now = new Date();
 
-            const user = result.user;
-            const contributions = user.contributionsCollection;
-            const calendar = contributions.contributionCalendar;
+            const oneYearAgo = new Date(now);
+            oneYearAgo.setUTCFullYear(
+              oneYearAgo.getUTCFullYear() - 1
+            );
 
-            const days = calendar.weeks
-              .flatMap(week => week.contributionDays)
-              .sort((a, b) => a.date.localeCompare(b.date));
+            const contributionResult =
+              await github.graphql(
+                contributionQuery,
+                {
+                  login: username,
+                  from: oneYearAgo.toISOString(),
+                  to: now.toISOString()
+                }
+              );
+
+            const user = contributionResult.user;
+
+            const contributions =
+              user.contributionsCollection;
+
+            const calendar =
+              contributions.contributionCalendar;
 
             /*
-             * Contribution statistics
+             * Flatten contribution days.
+             */
+
+            const recentDays = calendar.weeks
+              .flatMap(
+                week => week.contributionDays
+              )
+              .sort(
+                (a, b) =>
+                  a.date.localeCompare(b.date)
+              );
+
+            /*
+             * ============================================================
+             * 2. CONTRIBUTION STATISTICS
+             * ============================================================
              */
 
             const totalContributions =
@@ -101,175 +114,455 @@ jobs:
             const issues =
               contributions.totalIssueContributions;
 
-            const reviews =
-              contributions.totalPullRequestReviewContributions;
-
             /*
-             * Current streak
+             * ============================================================
+             * 3. CURRENT STREAK
+             *
+             * Correct behavior:
+             *
+             * - If today has contributions:
+             *   start from today.
+             *
+             * - If today has zero contributions:
+             *   start from yesterday.
+             *
+             * - If yesterday is also zero:
+             *   streak = 0.
+             * ============================================================
              */
+
+            const dayMap = new Map();
+
+            for (const day of recentDays) {
+              dayMap.set(
+                day.date,
+                day.contributionCount
+              );
+            }
+
+            const formatDate = date =>
+              date.toISOString().slice(0, 10);
+
+            const today =
+              formatDate(new Date());
+
+            const yesterdayDate =
+              new Date();
+
+            yesterdayDate.setUTCDate(
+              yesterdayDate.getUTCDate() - 1
+            );
+
+            const yesterday =
+              formatDate(yesterdayDate);
 
             let currentStreak = 0;
 
-            for (let i = days.length - 1; i >= 0; i--) {
-              if (days[i].contributionCount > 0) {
+            let streakStartDate = null;
+
+            if ((dayMap.get(today) || 0) > 0) {
+              streakStartDate = today;
+            } else if (
+              (dayMap.get(yesterday) || 0) > 0
+            ) {
+              streakStartDate = yesterday;
+            }
+
+            if (streakStartDate) {
+              let cursor =
+                new Date(
+                  `${streakStartDate}T00:00:00Z`
+                );
+
+              while (true) {
+                const dateString =
+                  formatDate(cursor);
+
+                if (
+                  (dayMap.get(dateString) || 0) <= 0
+                ) {
+                  break;
+                }
+
                 currentStreak++;
-              } else {
-                break;
+
+                cursor.setUTCDate(
+                  cursor.getUTCDate() - 1
+                );
               }
             }
 
             /*
-             * Longest streak
+             * ============================================================
+             * 4. HISTORICAL LONGEST STREAK
+             *
+             * GitHub contribution ranges are limited to one year.
+             * Therefore we query each year separately and combine all
+             * contribution days.
+             * ============================================================
              */
+
+            const createdYear =
+              new Date(user.createdAt)
+                .getUTCFullYear();
+
+            const currentYear =
+              now.getUTCFullYear();
+
+            const historicalDays = new Map();
+
+            const yearlyContributionQuery = `
+              query(
+                $login: String!
+                $from: DateTime!
+                $to: DateTime!
+              ) {
+                user(login: $login) {
+                  contributionsCollection(
+                    from: $from
+                    to: $to
+                  ) {
+                    contributionCalendar {
+                      weeks {
+                        contributionDays {
+                          date
+                          contributionCount
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+
+            for (
+              let year = createdYear;
+              year <= currentYear;
+              year++
+            ) {
+              const yearStart =
+                new Date(
+                  `${year}-01-01T00:00:00Z`
+                );
+
+              const yearEnd =
+                year === currentYear
+                  ? now
+                  : new Date(
+                      `${year + 1}-01-01T00:00:00Z`
+                    );
+
+              const yearlyResult =
+                await github.graphql(
+                  yearlyContributionQuery,
+                  {
+                    login: username,
+                    from: yearStart.toISOString(),
+                    to: yearEnd.toISOString()
+                  }
+                );
+
+              const yearlyDays =
+                yearlyResult.user
+                  .contributionsCollection
+                  .contributionCalendar
+                  .weeks
+                  .flatMap(
+                    week =>
+                      week.contributionDays
+                  );
+
+              for (const day of yearlyDays) {
+                historicalDays.set(
+                  day.date,
+                  day.contributionCount
+                );
+              }
+            }
+
+            const historicalDates =
+              Array.from(
+                historicalDays.keys()
+              ).sort();
 
             let longestStreak = 0;
             let runningStreak = 0;
+            let previousDate = null;
 
-            for (const day of days) {
-              if (day.contributionCount > 0) {
-                runningStreak++;
+            for (const date of historicalDates) {
+              const count =
+                historicalDays.get(date);
 
-                longestStreak = Math.max(
-                  longestStreak,
-                  runningStreak
-                );
+              if (count > 0) {
+                if (previousDate) {
+                  const previous =
+                    new Date(
+                      `${previousDate}T00:00:00Z`
+                    );
+
+                  const current =
+                    new Date(
+                      `${date}T00:00:00Z`
+                    );
+
+                  const difference =
+                    Math.round(
+                      (
+                        current - previous
+                      ) /
+                      (1000 * 60 * 60 * 24)
+                    );
+
+                  if (difference === 1) {
+                    runningStreak++;
+                  } else {
+                    runningStreak = 1;
+                  }
+                } else {
+                  runningStreak = 1;
+                }
+
+                longestStreak =
+                  Math.max(
+                    longestStreak,
+                    runningStreak
+                  );
+
+                previousDate = date;
               } else {
                 runningStreak = 0;
+                previousDate = null;
               }
             }
 
             /*
-             * Repository statistics
+             * ============================================================
+             * 5. PUBLIC REPOSITORIES
+             *
+             * REST pagination means repositories beyond #100 are included.
+             * ============================================================
              */
 
             const repositories =
-              user.repositories.nodes;
+              await github.paginate(
+                github.rest.repos.listForUser,
+                {
+                  username,
+                  type: "owner",
+                  per_page: 100
+                }
+              );
+
+            const publicRepositories =
+              repositories.filter(
+                repo =>
+                  repo.visibility === "public" &&
+                  !repo.fork
+              );
 
             const repositoryCount =
-              user.repositories.totalCount;
-
-            const stars = repositories.reduce(
-              (total, repo) =>
-                total + repo.stargazerCount,
-              0
-            );
-
-            const forks = repositories.reduce(
-              (total, repo) =>
-                total + repo.forkCount,
-              0
-            );
+              publicRepositories.length;
 
             /*
-             * Calculate language usage by repository size.
+             * ============================================================
+             * 6. STARS + FORKS
+             * ============================================================
+             */
+
+            const stars =
+              publicRepositories.reduce(
+                (total, repo) =>
+                  total +
+                  (repo.stargazers_count || 0),
+                0
+              );
+
+            const forks =
+              publicRepositories.reduce(
+                (total, repo) =>
+                  total +
+                  (repo.forks_count || 0),
+                0
+              );
+
+            /*
+             * ============================================================
+             * 7. LANGUAGE STATISTICS
+             *
+             * GitHub REST returns the byte count for every language
+             * detected in each repository.
+             * ============================================================
              */
 
             const languageSizes = {};
 
-            for (const repo of repositories) {
-              for (const edge of repo.languages.edges) {
-                const language =
-                  edge.node.name;
+            for (
+              const repo of publicRepositories
+            ) {
+              try {
+                const response =
+                  await github.rest.repos.listLanguages(
+                    {
+                      owner: username,
+                      repo: repo.name
+                    }
+                  );
 
-                languageSizes[language] =
-                  (languageSizes[language] || 0) +
-                  edge.size;
+                const languages =
+                  response.data;
+
+                for (
+                  const [language, size]
+                  of Object.entries(languages)
+                ) {
+                  languageSizes[language] =
+                    (
+                      languageSizes[language] || 0
+                    ) + size;
+                }
+              } catch (error) {
+                console.log(
+                  `Could not read languages for ${repo.name}`
+                );
               }
             }
 
             const totalLanguageSize =
               Object.values(languageSizes)
                 .reduce(
-                  (sum, value) => sum + value,
+                  (sum, value) =>
+                    sum + value,
                   0
                 );
 
             const languages =
               Object.entries(languageSizes)
-                .map(([name, size]) => ({
-                  name,
-                  percentage:
-                    totalLanguageSize > 0
-                      ? (size / totalLanguageSize) * 100
-                      : 0
-                }))
+                .map(
+                  ([name, size]) => ({
+                    name,
+                    percentage:
+                      totalLanguageSize > 0
+                        ? (
+                            size /
+                            totalLanguageSize
+                          ) * 100
+                        : 0
+                  })
+                )
                 .sort(
                   (a, b) =>
-                    b.percentage - a.percentage
+                    b.percentage -
+                    a.percentage
                 )
                 .slice(0, 5);
 
             /*
-             * XML escaping
+             * ============================================================
+             * 8. XML ESCAPING
+             * ============================================================
              */
 
-            const escapeXml = (value) =>
+            const escapeXml = value =>
               String(value)
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&apos;");
+                .replace(
+                  /&/g,
+                  "&amp;"
+                )
+                .replace(
+                  /</g,
+                  "&lt;"
+                )
+                .replace(
+                  />/g,
+                  "&gt;"
+                )
+                .replace(
+                  /"/g,
+                  "&quot;"
+                )
+                .replace(
+                  /'/g,
+                  "&apos;"
+                );
 
             /*
-             * Language rows
+             * ============================================================
+             * 9. LANGUAGE ROWS
+             * ============================================================
              */
 
             const languageRows =
               languages.length > 0
-                ? languages.map((language, index) => {
-                    const y = 395 + index * 34;
-                    const percentage =
-                      language.percentage.toFixed(1);
+                ? languages
+                    .map(
+                      (
+                        language,
+                        index
+                      ) => {
+                        const y =
+                          400 +
+                          index * 32;
 
-                    const barWidth =
-                      Math.max(
-                        8,
-                        Math.round(
-                          language.percentage * 3
-                        )
-                      );
+                        const percentage =
+                          language.percentage
+                            .toFixed(1);
 
-                    return `
-                      <text
-                        x="55"
-                        y="${y}"
-                        fill="#c9d1d9"
-                        font-family="Arial, sans-serif"
-                        font-size="12">
-                        ${escapeXml(language.name)}
-                      </text>
+                        const barWidth =
+                          Math.max(
+                            8,
+                            Math.round(
+                              language.percentage *
+                              3.2
+                            )
+                          );
 
-                      <rect
-                        x="170"
-                        y="${y - 12}"
-                        width="180"
-                        height="10"
-                        rx="5"
-                        fill="#21262d"/>
+                        return `
+                          <text
+                            x="55"
+                            y="${y}"
+                            fill="#c9d1d9"
+                            font-family="Arial, sans-serif"
+                            font-size="12">
+                            ${escapeXml(
+                              language.name
+                            )}
+                          </text>
 
-                      <rect
-                        x="170"
-                        y="${y - 12}"
-                        width="${Math.min(barWidth, 180)}"
-                        height="10"
-                        rx="5"
-                        fill="#58a6ff"/>
+                          <rect
+                            x="170"
+                            y="${y - 11}"
+                            width="185"
+                            height="9"
+                            rx="4.5"
+                            fill="#21262d"/>
 
-                      <text
-                        x="370"
-                        y="${y}"
-                        fill="#8b949e"
-                        font-family="Arial, sans-serif"
-                        font-size="12">
-                        ${percentage}%
-                      </text>
-                    `;
-                  }).join("")
+                          <rect
+                            x="170"
+                            y="${y - 11}"
+                            width="${Math.min(
+                              barWidth,
+                              185
+                            )}"
+                            height="9"
+                            rx="4.5"
+                            fill="#58a6ff"/>
+
+                          <text
+                            x="375"
+                            y="${y}"
+                            fill="#8b949e"
+                            font-family="Arial, sans-serif"
+                            font-size="12">
+                            ${percentage}%
+                          </text>
+                        `;
+                      }
+                    )
+                    .join("")
                 : `
                     <text
                       x="55"
-                      y="395"
+                      y="400"
                       fill="#8b949e"
                       font-family="Arial, sans-serif"
                       font-size="12">
@@ -278,144 +571,201 @@ jobs:
                   `;
 
             /*
-             * SVG
+             * ============================================================
+             * 10. PROFESSIONAL SVG
+             * ============================================================
              */
 
             const svg = `
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="700"
-              height="600"
-              viewBox="0 0 700 600">
+              width="760"
+              height="570"
+              viewBox="0 0 760 570">
+
+              <!-- Background -->
 
               <rect
-                width="700"
-                height="600"
-                rx="14"
+                width="760"
+                height="570"
+                rx="18"
                 fill="#0d1117"/>
 
               <rect
                 x="1"
                 y="1"
-                width="698"
-                height="598"
-                rx="14"
+                width="758"
+                height="568"
+                rx="18"
                 fill="none"
                 stroke="#30363d"/>
 
+              <!-- Header -->
+
               <text
-                x="35"
+                x="36"
                 y="48"
                 fill="#f0f6fc"
                 font-family="Arial, sans-serif"
-                font-size="22"
+                font-size="23"
                 font-weight="700">
                 GitHub Analysis
               </text>
 
               <text
-                x="35"
+                x="36"
                 y="72"
                 fill="#8b949e"
                 font-family="Arial, sans-serif"
                 font-size="12">
-                AnushkaBanik · automatically updated
+                AnushkaBanik
+              </text>
+
+              <circle
+                cx="128"
+                cy="68"
+                r="2"
+                fill="#58a6ff"/>
+
+              <text
+                x="138"
+                y="72"
+                fill="#8b949e"
+                font-family="Arial, sans-serif"
+                font-size="12">
+                Updated automatically
               </text>
 
               <line
-                x1="35"
-                y1="92"
-                x2="665"
-                y2="92"
+                x1="36"
+                y1="94"
+                x2="724"
+                y2="94"
                 stroke="#30363d"/>
 
-              <!-- Top statistics -->
+              <!-- Primary metrics -->
 
               <text
-                x="105"
-                y="125"
+                x="126"
+                y="123"
                 text-anchor="middle"
                 fill="#8b949e"
                 font-family="Arial, sans-serif"
-                font-size="11">
-                TOTAL CONTRIBUTIONS
+                font-size="10"
+                font-weight="600">
+                CONTRIBUTIONS
               </text>
 
               <text
-                x="105"
+                x="126"
                 y="158"
                 text-anchor="middle"
                 fill="#58a6ff"
                 font-family="Arial, sans-serif"
-                font-size="30"
+                font-size="31"
                 font-weight="700">
                 ${totalContributions}
               </text>
 
               <text
-                x="350"
-                y="125"
+                x="126"
+                y="176"
+                text-anchor="middle"
+                fill="#6e7681"
+                font-family="Arial, sans-serif"
+                font-size="9">
+                LAST 12 MONTHS
+              </text>
+
+
+              <text
+                x="380"
+                y="123"
                 text-anchor="middle"
                 fill="#8b949e"
                 font-family="Arial, sans-serif"
-                font-size="11">
+                font-size="10"
+                font-weight="600">
                 CURRENT STREAK
               </text>
 
               <text
-                x="350"
+                x="380"
                 y="158"
                 text-anchor="middle"
                 fill="#58a6ff"
                 font-family="Arial, sans-serif"
-                font-size="30"
+                font-size="31"
                 font-weight="700">
                 ${currentStreak}
               </text>
 
               <text
-                x="595"
-                y="125"
+                x="380"
+                y="176"
+                text-anchor="middle"
+                fill="#6e7681"
+                font-family="Arial, sans-serif"
+                font-size="9">
+                CONSECUTIVE DAYS
+              </text>
+
+
+              <text
+                x="634"
+                y="123"
                 text-anchor="middle"
                 fill="#8b949e"
                 font-family="Arial, sans-serif"
-                font-size="11">
+                font-size="10"
+                font-weight="600">
                 LONGEST STREAK
               </text>
 
               <text
-                x="595"
+                x="634"
                 y="158"
                 text-anchor="middle"
                 fill="#58a6ff"
                 font-family="Arial, sans-serif"
-                font-size="30"
+                font-size="31"
                 font-weight="700">
                 ${longestStreak}
               </text>
 
+              <text
+                x="634"
+                y="176"
+                text-anchor="middle"
+                fill="#6e7681"
+                font-family="Arial, sans-serif"
+                font-size="9">
+                ALL TIME
+              </text>
+
               <line
-                x1="35"
-                y1="185"
-                x2="665"
-                y2="185"
+                x1="36"
+                y1="198"
+                x2="724"
+                y2="198"
                 stroke="#30363d"/>
 
-              <!-- Activity statistics -->
+              <!-- Activity metrics -->
 
               <text
-                x="105"
-                y="220"
+                x="126"
+                y="228"
                 text-anchor="middle"
                 fill="#8b949e"
                 font-family="Arial, sans-serif"
-                font-size="11">
-                COMMITS
+                font-size="10"
+                font-weight="600">
+                COMMIT CONTRIBUTIONS
               </text>
 
               <text
-                x="105"
-                y="250"
+                x="126"
+                y="257"
                 text-anchor="middle"
                 fill="#f0f6fc"
                 font-family="Arial, sans-serif"
@@ -424,19 +774,21 @@ jobs:
                 ${commitContributions}
               </text>
 
+
               <text
-                x="350"
-                y="220"
+                x="380"
+                y="228"
                 text-anchor="middle"
                 fill="#8b949e"
                 font-family="Arial, sans-serif"
-                font-size="11">
+                font-size="10"
+                font-weight="600">
                 PULL REQUESTS
               </text>
 
               <text
-                x="350"
-                y="250"
+                x="380"
+                y="257"
                 text-anchor="middle"
                 fill="#f0f6fc"
                 font-family="Arial, sans-serif"
@@ -445,19 +797,21 @@ jobs:
                 ${pullRequests}
               </text>
 
+
               <text
-                x="595"
-                y="220"
+                x="634"
+                y="228"
                 text-anchor="middle"
                 fill="#8b949e"
                 font-family="Arial, sans-serif"
-                font-size="11">
+                font-size="10"
+                font-weight="600">
                 ISSUES
               </text>
 
               <text
-                x="595"
-                y="250"
+                x="634"
+                y="257"
                 text-anchor="middle"
                 fill="#f0f6fc"
                 font-family="Arial, sans-serif"
@@ -467,129 +821,171 @@ jobs:
               </text>
 
               <line
-                x1="35"
-                y1="275"
-                x2="665"
-                y2="275"
+                x1="36"
+                y1="279"
+                x2="724"
+                y2="279"
                 stroke="#30363d"/>
 
-              <!-- Repository statistics -->
+              <!-- Repository metrics -->
 
               <text
-                x="175"
-                y="310"
+                x="190"
+                y="309"
                 text-anchor="middle"
                 fill="#8b949e"
                 font-family="Arial, sans-serif"
-                font-size="11">
+                font-size="10"
+                font-weight="600">
                 PUBLIC REPOSITORIES
               </text>
 
               <text
-                x="175"
+                x="190"
                 y="338"
                 text-anchor="middle"
                 fill="#f0f6fc"
                 font-family="Arial, sans-serif"
-                font-size="20"
+                font-size="21"
                 font-weight="700">
                 ${repositoryCount}
               </text>
 
+
               <text
-                x="350"
-                y="310"
+                x="380"
+                y="309"
                 text-anchor="middle"
                 fill="#8b949e"
                 font-family="Arial, sans-serif"
-                font-size="11">
+                font-size="10"
+                font-weight="600">
                 STARS
               </text>
 
               <text
-                x="350"
+                x="380"
                 y="338"
                 text-anchor="middle"
                 fill="#f0f6fc"
                 font-family="Arial, sans-serif"
-                font-size="20"
+                font-size="21"
                 font-weight="700">
                 ${stars}
               </text>
 
+
               <text
-                x="525"
-                y="310"
+                x="570"
+                y="309"
                 text-anchor="middle"
                 fill="#8b949e"
                 font-family="Arial, sans-serif"
-                font-size="11">
+                font-size="10"
+                font-weight="600">
                 FORKS
               </text>
 
               <text
-                x="525"
+                x="570"
                 y="338"
                 text-anchor="middle"
                 fill="#f0f6fc"
                 font-family="Arial, sans-serif"
-                font-size="20"
+                font-size="21"
                 font-weight="700">
                 ${forks}
               </text>
 
               <line
-                x1="35"
+                x1="36"
                 y1="360"
-                x2="665"
+                x2="724"
                 y2="360"
                 stroke="#30363d"/>
 
               <!-- Languages -->
 
               <text
-                x="35"
-                y="385"
+                x="36"
+                y="386"
                 fill="#f0f6fc"
                 font-family="Arial, sans-serif"
-                font-size="15"
+                font-size="14"
                 font-weight="700">
                 Top Languages
               </text>
 
-              ${languageRows}
-
               <text
-                x="35"
-                y="575"
+                x="724"
+                y="386"
+                text-anchor="end"
                 fill="#6e7681"
                 font-family="Arial, sans-serif"
-                font-size="10">
+                font-size="9">
+                BY CODE SIZE
+              </text>
+
+              ${languageRows}
+
+              <!-- Footer -->
+
+              <text
+                x="36"
+                y="548"
+                fill="#6e7681"
+                font-family="Arial, sans-serif"
+                font-size="9">
                 Generated automatically by GitHub Actions
+              </text>
+
+              <text
+                x="724"
+                y="548"
+                text-anchor="end"
+                fill="#6e7681"
+                font-family="Arial, sans-serif"
+                font-size="9">
+                github.com/AnushkaBanik
               </text>
 
             </svg>
             `;
 
             /*
-             * Save SVG into repository
+             * ============================================================
+             * 11. WRITE SVG
+             * ============================================================
              */
 
-            const path = "assets/github-stats.svg";
+            const path =
+              "assets/github-stats.svg";
 
             let existingSha;
 
             try {
               const existing =
-                await github.rest.repos.getContent({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  path: path,
-                  ref: context.payload.repository.default_branch
-                });
+                await github.rest.repos.getContent(
+                  {
+                    owner:
+                      context.repo.owner,
+                    repo:
+                      context.repo.repo,
+                    path,
+                    ref:
+                      context.payload
+                        .repository
+                        .default_branch
+                  }
+                );
 
-              if (!Array.isArray(existing.data)) {
-                existingSha = existing.data.sha;
+              if (
+                !Array.isArray(
+                  existing.data
+                )
+              ) {
+                existingSha =
+                  existing.data.sha;
               }
             } catch (error) {
               if (error.status !== 404) {
@@ -603,18 +999,30 @@ jobs:
                 "utf8"
               ).toString("base64");
 
-            await github.rest.repos.createOrUpdateFileContents({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              path,
-              message: "chore: update GitHub stats",
-              content: encoded,
-              sha: existingSha,
-              branch:
-                context.payload.repository.default_branch
-            });
+            await github.rest
+              .repos
+              .createOrUpdateFileContents(
+                {
+                  owner:
+                    context.repo.owner,
+                  repo:
+                    context.repo.repo,
+                  path,
+                  message:
+                    "chore: update GitHub stats",
+                  content: encoded,
+                  sha: existingSha,
+                  branch:
+                    context.payload
+                      .repository
+                      .default_branch
+                }
+              );
 
-            console.log("GitHub stats updated successfully.");
+            console.log(
+              "GitHub stats updated successfully."
+            );
+
             console.log({
               totalContributions,
               currentStreak,
@@ -622,7 +1030,6 @@ jobs:
               commitContributions,
               pullRequests,
               issues,
-              reviews,
               repositoryCount,
               stars,
               forks,
