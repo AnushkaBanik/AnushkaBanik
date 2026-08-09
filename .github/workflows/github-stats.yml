@@ -1034,6 +1034,5 @@ jobs:
               repositoryCount,
               stars,
               forksReceived,
-              forkedRepositories,
               languages
             });
