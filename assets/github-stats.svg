@@ -292,9 +292,30 @@
     font-family="Arial, sans-serif"
     font-size="21"
     font-weight="700">
-    15
+    2
   </text>
 
+   <text
+    x="570"
+    y="309"
+    text-anchor="middle"
+    fill="#8b949e"
+    font-family="Arial, sans-serif"
+    font-size="10"
+    font-weight="600">
+    FORKES RECEIVED
+  </text>
+
+  <text
+    x="570"
+    y="338"
+    text-anchor="middle"
+    fill="#f0f6fc"
+    font-family="Arial, sans-serif"
+    font-size="21"
+    font-weight="700">
+    0
+  </text>
 
   <text
     x="570"
@@ -304,7 +325,7 @@
     font-family="Arial, sans-serif"
     font-size="10"
     font-weight="600">
-    FORKS
+    FORKED REPOSITORIES
   </text>
 
   <text
