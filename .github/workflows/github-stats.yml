@@ -102,10 +102,25 @@ jobs:
              * ============================================================
              */
 
-            const totalContributions =
-              calendar.totalContributions;
+             const calculatedTotal =
+                 recentDays.reduce(
+                   (sum, day) =>
+                        sum + day.contributionCount,
+                   0
+                  );
 
-            console.log("TOTAL FROM GITHUB:", calendar.totalContributions);
+             const totalContributions =
+                 calendar.totalContributions;
+
+             console.log(
+                "GitHub calendar total:",
+                 totalContributions
+              );
+
+             console.log(
+             "Calculated from contribution days:",
+              calculatedTotal
+              );
 
             const commitContributions =
               contributions.totalCommitContributions;
