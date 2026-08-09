@@ -1,0 +1,260 @@
+name: Update GitHub Stats
+
+on:
+  schedule:
+    - cron: "17 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate GitHub Stats
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const username = "AnushkaBanik";
+
+            const query = `
+              query($login: String!) {
+                user(login: $login) {
+                  contributionsCollection {
+                    contributionCalendar {
+                      totalContributions
+                      weeks {
+                        contributionDays {
+                          date
+                          contributionCount
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+
+            const result = await github.graphql(query, {
+              login: username
+            });
+
+            const calendar =
+              result.user.contributionsCollection.contributionCalendar;
+
+            const days = calendar.weeks
+              .flatMap(week => week.contributionDays)
+              .sort((a, b) => a.date.localeCompare(b.date));
+
+            const totalContributions =
+              calendar.totalContributions;
+
+            // Calculate current streak
+            let currentStreak = 0;
+
+            for (let i = days.length - 1; i >= 0; i--) {
+              if (days[i].contributionCount > 0) {
+                currentStreak++;
+              } else {
+                break;
+              }
+            }
+
+            // Calculate longest streak
+            let longestStreak = 0;
+            let runningStreak = 0;
+
+            for (const day of days) {
+              if (day.contributionCount > 0) {
+                runningStreak++;
+                longestStreak =
+                  Math.max(longestStreak, runningStreak);
+              } else {
+                runningStreak = 0;
+              }
+            }
+
+            const escapeXml = (text) =>
+              String(text)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&apos;");
+
+            const svg = `
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="500"
+              height="160"
+              viewBox="0 0 500 160">
+
+              <rect
+                width="500"
+                height="160"
+                rx="4"
+                fill="#161b22"/>
+
+              <line
+                x1="166"
+                y1="15"
+                x2="166"
+                y2="145"
+                stroke="#484f58"
+                stroke-width="1"/>
+
+              <line
+                x1="333"
+                y1="15"
+                x2="333"
+                y2="145"
+                stroke="#484f58"
+                stroke-width="1"/>
+
+              <text
+                x="83"
+                y="65"
+                text-anchor="middle"
+                fill="#58a6ff"
+                font-family="Arial, sans-serif"
+                font-size="28"
+                font-weight="700">
+                ${totalContributions}
+              </text>
+
+              <text
+                x="83"
+                y="90"
+                text-anchor="middle"
+                fill="#c9d1d9"
+                font-family="Arial, sans-serif"
+                font-size="11">
+                Total Contributions
+              </text>
+
+              <text
+                x="83"
+                y="112"
+                text-anchor="middle"
+                fill="#3fb950"
+                font-family="Arial, sans-serif"
+                font-size="9">
+                GitHub Activity
+              </text>
+
+              <circle
+                cx="250"
+                cy="60"
+                r="30"
+                fill="none"
+                stroke="#58a6ff"
+                stroke-width="3"/>
+
+              <text
+                x="250"
+                y="67"
+                text-anchor="middle"
+                fill="#58a6ff"
+                font-family="Arial, sans-serif"
+                font-size="25"
+                font-weight="700">
+                ${currentStreak}
+              </text>
+
+              <text
+                x="250"
+                y="96"
+                text-anchor="middle"
+                fill="#c9d1d9"
+                font-family="Arial, sans-serif"
+                font-size="11">
+                Current Streak
+              </text>
+
+              <text
+                x="250"
+                y="115"
+                text-anchor="middle"
+                fill="#3fb950"
+                font-family="Arial, sans-serif"
+                font-size="9">
+                days
+              </text>
+
+              <text
+                x="417"
+                y="65"
+                text-anchor="middle"
+                fill="#58a6ff"
+                font-family="Arial, sans-serif"
+                font-size="28"
+                font-weight="700">
+                ${longestStreak}
+              </text>
+
+              <text
+                x="417"
+                y="90"
+                text-anchor="middle"
+                fill="#c9d1d9"
+                font-family="Arial, sans-serif"
+                font-size="11">
+                Longest Streak
+              </text>
+
+              <text
+                x="417"
+                y="112"
+                text-anchor="middle"
+                fill="#3fb950"
+                font-family="Arial, sans-serif"
+                font-size="9">
+                days
+              </text>
+
+            </svg>
+            `;
+
+            const path = "assets/github-stats.svg";
+
+            let existingSha = undefined;
+
+            try {
+              const existing =
+                await github.rest.repos.getContent({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  path: path,
+                  ref: context.sha
+                });
+
+              if (!Array.isArray(existing.data)) {
+                existingSha = existing.data.sha;
+              }
+            } catch (error) {
+              if (error.status !== 404) {
+                throw error;
+              }
+            }
+
+            const encoded =
+              Buffer.from(svg.trim(), "utf8").toString("base64");
+
+            await github.rest.repos.createOrUpdateFileContents({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              path: path,
+              message: "chore: update GitHub stats",
+              content: encoded,
+              sha: existingSha,
+              branch: context.payload.repository.default_branch
+            });
+
+            console.log("GitHub stats updated successfully.");
+            console.log(
+              `Total: ${totalContributions}, ` +
+              `Current streak: ${currentStreak}, ` +
+              `Longest streak: ${longestStreak}`
+            );
