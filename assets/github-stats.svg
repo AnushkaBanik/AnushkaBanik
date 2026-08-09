@@ -1,130 +1,423 @@
 <svg
   xmlns="http://www.w3.org/2000/svg"
-  width="500"
-  height="160"
-  viewBox="0 0 500 160">
+  width="700"
+  height="600"
+  viewBox="0 0 700 600">
 
   <rect
-    width="500"
-    height="160"
-    rx="4"
-    fill="#161b22"/>
+    width="700"
+    height="600"
+    rx="14"
+    fill="#0d1117"/>
 
-  <line
-    x1="166"
-    y1="15"
-    x2="166"
-    y2="145"
-    stroke="#484f58"
-    stroke-width="1"/>
-
-  <line
-    x1="333"
-    y1="15"
-    x2="333"
-    y2="145"
-    stroke="#484f58"
-    stroke-width="1"/>
+  <rect
+    x="1"
+    y="1"
+    width="698"
+    height="598"
+    rx="14"
+    fill="none"
+    stroke="#30363d"/>
 
   <text
-    x="83"
-    y="65"
-    text-anchor="middle"
-    fill="#58a6ff"
+    x="35"
+    y="48"
+    fill="#f0f6fc"
     font-family="Arial, sans-serif"
-    font-size="28"
+    font-size="22"
     font-weight="700">
-    86
+    GitHub Analysis
   </text>
 
   <text
-    x="83"
-    y="90"
+    x="35"
+    y="72"
+    fill="#8b949e"
+    font-family="Arial, sans-serif"
+    font-size="12">
+    AnushkaBanik · automatically updated
+  </text>
+
+  <line
+    x1="35"
+    y1="92"
+    x2="665"
+    y2="92"
+    stroke="#30363d"/>
+
+  <!-- Top statistics -->
+
+  <text
+    x="105"
+    y="125"
     text-anchor="middle"
-    fill="#c9d1d9"
+    fill="#8b949e"
     font-family="Arial, sans-serif"
     font-size="11">
-    Total Contributions
+    TOTAL CONTRIBUTIONS
   </text>
 
   <text
-    x="83"
-    y="112"
-    text-anchor="middle"
-    fill="#3fb950"
-    font-family="Arial, sans-serif"
-    font-size="9">
-    GitHub Activity
-  </text>
-
-  <circle
-    cx="250"
-    cy="60"
-    r="30"
-    fill="none"
-    stroke="#58a6ff"
-    stroke-width="3"/>
-
-  <text
-    x="250"
-    y="67"
+    x="105"
+    y="158"
     text-anchor="middle"
     fill="#58a6ff"
     font-family="Arial, sans-serif"
-    font-size="25"
+    font-size="30"
+    font-weight="700">
+    87
+  </text>
+
+  <text
+    x="350"
+    y="125"
+    text-anchor="middle"
+    fill="#8b949e"
+    font-family="Arial, sans-serif"
+    font-size="11">
+    CURRENT STREAK
+  </text>
+
+  <text
+    x="350"
+    y="158"
+    text-anchor="middle"
+    fill="#58a6ff"
+    font-family="Arial, sans-serif"
+    font-size="30"
     font-weight="700">
     1
   </text>
 
   <text
-    x="250"
-    y="96"
+    x="595"
+    y="125"
     text-anchor="middle"
-    fill="#c9d1d9"
+    fill="#8b949e"
     font-family="Arial, sans-serif"
     font-size="11">
-    Current Streak
+    LONGEST STREAK
   </text>
 
   <text
-    x="250"
-    y="115"
-    text-anchor="middle"
-    fill="#3fb950"
-    font-family="Arial, sans-serif"
-    font-size="9">
-    days
-  </text>
-
-  <text
-    x="417"
-    y="65"
+    x="595"
+    y="158"
     text-anchor="middle"
     fill="#58a6ff"
     font-family="Arial, sans-serif"
-    font-size="28"
+    font-size="30"
     font-weight="700">
     22
   </text>
 
+  <line
+    x1="35"
+    y1="185"
+    x2="665"
+    y2="185"
+    stroke="#30363d"/>
+
+  <!-- Activity statistics -->
+
   <text
-    x="417"
-    y="90"
+    x="105"
+    y="220"
     text-anchor="middle"
-    fill="#c9d1d9"
+    fill="#8b949e"
     font-family="Arial, sans-serif"
     font-size="11">
-    Longest Streak
+    COMMITS
   </text>
 
   <text
-    x="417"
-    y="112"
+    x="105"
+    y="250"
     text-anchor="middle"
-    fill="#3fb950"
+    fill="#f0f6fc"
     font-family="Arial, sans-serif"
-    font-size="9">
-    days
+    font-size="22"
+    font-weight="700">
+    73
+  </text>
+
+  <text
+    x="350"
+    y="220"
+    text-anchor="middle"
+    fill="#8b949e"
+    font-family="Arial, sans-serif"
+    font-size="11">
+    PULL REQUESTS
+  </text>
+
+  <text
+    x="350"
+    y="250"
+    text-anchor="middle"
+    fill="#f0f6fc"
+    font-family="Arial, sans-serif"
+    font-size="22"
+    font-weight="700">
+    1
+  </text>
+
+  <text
+    x="595"
+    y="220"
+    text-anchor="middle"
+    fill="#8b949e"
+    font-family="Arial, sans-serif"
+    font-size="11">
+    ISSUES
+  </text>
+
+  <text
+    x="595"
+    y="250"
+    text-anchor="middle"
+    fill="#f0f6fc"
+    font-family="Arial, sans-serif"
+    font-size="22"
+    font-weight="700">
+    0
+  </text>
+
+  <line
+    x1="35"
+    y1="275"
+    x2="665"
+    y2="275"
+    stroke="#30363d"/>
+
+  <!-- Repository statistics -->
+
+  <text
+    x="175"
+    y="310"
+    text-anchor="middle"
+    fill="#8b949e"
+    font-family="Arial, sans-serif"
+    font-size="11">
+    PUBLIC REPOSITORIES
+  </text>
+
+  <text
+    x="175"
+    y="338"
+    text-anchor="middle"
+    fill="#f0f6fc"
+    font-family="Arial, sans-serif"
+    font-size="20"
+    font-weight="700">
+    13
+  </text>
+
+  <text
+    x="350"
+    y="310"
+    text-anchor="middle"
+    fill="#8b949e"
+    font-family="Arial, sans-serif"
+    font-size="11">
+    STARS
+  </text>
+
+  <text
+    x="350"
+    y="338"
+    text-anchor="middle"
+    fill="#f0f6fc"
+    font-family="Arial, sans-serif"
+    font-size="20"
+    font-weight="700">
+    13
+  </text>
+
+  <text
+    x="525"
+    y="310"
+    text-anchor="middle"
+    fill="#8b949e"
+    font-family="Arial, sans-serif"
+    font-size="11">
+    FORKS
+  </text>
+
+  <text
+    x="525"
+    y="338"
+    text-anchor="middle"
+    fill="#f0f6fc"
+    font-family="Arial, sans-serif"
+    font-size="20"
+    font-weight="700">
+    0
+  </text>
+
+  <line
+    x1="35"
+    y1="360"
+    x2="665"
+    y2="360"
+    stroke="#30363d"/>
+
+  <!-- Languages -->
+
+  <text
+    x="35"
+    y="385"
+    fill="#f0f6fc"
+    font-family="Arial, sans-serif"
+    font-size="15"
+    font-weight="700">
+    Top Languages
+  </text>
+
+  
+          <text
+            x="55"
+            y="395"
+            fill="#c9d1d9"
+            font-family="Arial, sans-serif"
+            font-size="12">
+            JavaScript
+          </text>
+
+          <rect
+            x="170"
+            y="383"
+            width="180"
+            height="10"
+            rx="5"
+            fill="#21262d"/>
+
+          <rect
+            x="170"
+            y="383"
+            width="180"
+            height="10"
+            rx="5"
+            fill="#58a6ff"/>
+
+          <text
+            x="370"
+            y="395"
+            fill="#8b949e"
+            font-family="Arial, sans-serif"
+            font-size="12">
+            89.8%
+          </text>
+        
+          <text
+            x="55"
+            y="429"
+            fill="#c9d1d9"
+            font-family="Arial, sans-serif"
+            font-size="12">
+            CSS
+          </text>
+
+          <rect
+            x="170"
+            y="417"
+            width="180"
+            height="10"
+            rx="5"
+            fill="#21262d"/>
+
+          <rect
+            x="170"
+            y="417"
+            width="14"
+            height="10"
+            rx="5"
+            fill="#58a6ff"/>
+
+          <text
+            x="370"
+            y="429"
+            fill="#8b949e"
+            font-family="Arial, sans-serif"
+            font-size="12">
+            4.7%
+          </text>
+        
+          <text
+            x="55"
+            y="463"
+            fill="#c9d1d9"
+            font-family="Arial, sans-serif"
+            font-size="12">
+            HTML
+          </text>
+
+          <rect
+            x="170"
+            y="451"
+            width="180"
+            height="10"
+            rx="5"
+            fill="#21262d"/>
+
+          <rect
+            x="170"
+            y="451"
+            width="9"
+            height="10"
+            rx="5"
+            fill="#58a6ff"/>
+
+          <text
+            x="370"
+            y="463"
+            fill="#8b949e"
+            font-family="Arial, sans-serif"
+            font-size="12">
+            2.9%
+          </text>
+        
+          <text
+            x="55"
+            y="497"
+            fill="#c9d1d9"
+            font-family="Arial, sans-serif"
+            font-size="12">
+            Java
+          </text>
+
+          <rect
+            x="170"
+            y="485"
+            width="180"
+            height="10"
+            rx="5"
+            fill="#21262d"/>
+
+          <rect
+            x="170"
+            y="485"
+            width="8"
+            height="10"
+            rx="5"
+            fill="#58a6ff"/>
+
+          <text
+            x="370"
+            y="497"
+            fill="#8b949e"
+            font-family="Arial, sans-serif"
+            font-size="12">
+            2.6%
+          </text>
+        
+
+  <text
+    x="35"
+    y="575"
+    fill="#6e7681"
+    font-family="Arial, sans-serif"
+    font-size="10">
+    Generated automatically by GitHub Actions
   </text>
 
 </svg>
