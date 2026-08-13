@@ -81,17 +81,6 @@
 </p>
 ---
 
-## 📊 GitHub Analysis
-
-<p align="center">
-  <img
-    src="./assets/github-stats.svg"
-    alt="AnushkaBanik GitHub Statistics"
-    width="500"
-  />
-</p>
----
-
 ## 📈 Contribution Activity
 
 <p align="center">
