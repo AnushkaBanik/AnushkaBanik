@@ -47,7 +47,7 @@
 
 <!-- Backend & DB -->
 <p align="left">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" width="50"/>
+<img src="https://cdn.simpleicons.org/express/white" width="60"/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" width="50"/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" width="50"/>
   <img src="https://res.cloudinary.com/cloudinary-marketing/image/upload/v1599098500/creative_source/Logo/Cloud%20Glyph/cloudinary_cloud_glyph_blue_png.png" width="50"/>
@@ -69,15 +69,22 @@
   <a href="https://www.linkedin.com/in/anushka-banik-9423a32a8/" target="_blank">
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" height="40" />
   </a>
-  <a href="https://github.com/AnushkaBanik" target="_blank">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" height="40" />
-  </a>
 <a href="mailto:anushkabanik80@gmail.com">
   <img src="https://img.icons8.com/color/48/000000/gmail-new.png" alt="Email" height="40" />
 </a>
   <a href="https://instagram.com/anushka.banik.33" target="_blank">
     <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" height="40" />
   </a>
+</p>
+---
+
+## 📊 GitHub Stats:
+<p align="center">
+
+![](https://github-readme-stats.shion.dev/api?username=AnushkaBanik&theme=radical&hide_border=false&include_all_commits=false&count_private=false)<br/>
+![](https://streak-stats.demolab.com/?user=AnushkaBanik&theme=radical&hide_border=false)<br/>
+![](https://github-readme-stats.shion.dev/api/top-langs/?username=AnushkaBanik&theme=radical&hide_border=false&layout=compact)
+
 </p>
 ---
 
